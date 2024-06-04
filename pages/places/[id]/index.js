@@ -45,7 +45,7 @@ export default function DetailsPage() {
     console.log("deleted?");
   }
   // console.log("Data in place", data);
-  console.log("place123: ", place);
+  // console.log("place123: ", place);
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>

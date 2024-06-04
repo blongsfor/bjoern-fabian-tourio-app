@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton.js";
+import { useRouter } from "next/router.js";
 
 export const FormContainer = styled.form`
   display: grid;
@@ -27,6 +28,7 @@ export const Label = styled.label`
 export default function Form({ onSubmit, formName, defaultData }) {
   function handleSubmit(event) {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     onSubmit(data);
