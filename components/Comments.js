@@ -40,6 +40,21 @@ export default function Comments({ locationName, comments, id, mutate }) {
     }
   }
 
+  async function deleteComment(commentId) {
+    const response = await fetch(`/api/places/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ commentId }),
+    });
+
+    if (response.ok) {
+      await response.json();
+      mutate();
+    } else {
+      console.error(`Error: ${response.status}`);
+    }
+  }
+
   return (
     <Article>
       <FormContainer onSubmit={handleSubmitComment}>
@@ -56,6 +71,13 @@ export default function Comments({ locationName, comments, id, mutate }) {
             return (
               <>
                 <p key={_id}>
+                  <button
+                    onClick={() => deleteComment(_id)}
+                    type="button"
+                    variant="delete"
+                  >
+                    Delete Comment
+                  </button>
                   <small>
                     <strong>{name}</strong> commented on {locationName}
                   </small>
