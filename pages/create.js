@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import Form from "../components/Form.js";
 import { StyledLink } from "../components/StyledLink.js";
-import useSWR from "swr";
+//import useSWR from "swr";
 
 const StyledBackLink = styled(StyledLink)`
   justify-self: flex-start;
@@ -11,7 +11,7 @@ const StyledBackLink = styled(StyledLink)`
 
 export default function CreatePlacePage() {
   const router = useRouter();
-  const { mutate } = useSWR("/api/places");
+  //const { mutate } = useSWR("/api/places");
 
   async function addPlace(placeData) {
     console.log("Hier mal schauen:", placeData);
