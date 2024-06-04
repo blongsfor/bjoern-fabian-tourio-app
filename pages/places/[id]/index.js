@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router.js";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import styled from "styled-components";
 import { StyledLink } from "../../../components/StyledLink.js";
 import { StyledButton } from "../../../components/StyledButton.js";
@@ -37,6 +37,7 @@ export default function DetailsPage() {
     data: { comments, ...place } = {},
     isLoading,
     error,
+    mutate,
   } = useSWR(`/api/places/${id}`);
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
@@ -85,7 +86,12 @@ export default function DetailsPage() {
           Delete
         </StyledButton>
       </ButtonContainer>
-      <Comments locationName={place.name} comments={comments} />
+      <Comments
+        locationName={place.name}
+        comments={comments}
+        id={id}
+        mutate={mutate}
+      />
     </>
   );
 }
